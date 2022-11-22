@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
+import {
+  createHashRouter,
+  RouterProvider,
+  Route,
+  Outlet,
+  Link,
+} from "react-router-dom";
 import App from './App'
 import 'reset-css'
+import router from "@/router"
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 )
