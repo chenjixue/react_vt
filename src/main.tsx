@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import App from './App'
 import 'reset-css'
+import "@/assets/css/global.scss"
 import router from "@/router"
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

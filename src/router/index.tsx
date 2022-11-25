@@ -4,7 +4,7 @@ import {
   RouterProvider,
   Route,
   Outlet,
-  Link,
+  Navigate,
 } from "react-router-dom";
 let withLazyComponet = (path: string, loadComponent = (<div>Loading...</div>)) => {
   // debugger;
@@ -19,16 +19,25 @@ let withLazyComponet = (path: string, loadComponent = (<div>Loading...</div>)) =
 }
 let Cpo = withLazyComponet("@/components/component_one/index.tsx")
 let Cpt = withLazyComponet("@/components/component_two/index.tsx")
+let Home = withLazyComponet("@/view/home/index.tsx")
 
 
 const router = createHashRouter([
   {
-    path: "/",
-    element: <Cpo />,
+    path:"/",
+    element:<Navigate to="/home/cpt"  />
+  },
+  {
+    path: "/home",
+    element: <Home />,
     children: [
       {
-        path: "/about",
+        path: "cpt",
         element: (<Cpt />)
+      },
+      {
+        path: "cpo",
+        element: (<Cpo />)
       },
     ]
   },
