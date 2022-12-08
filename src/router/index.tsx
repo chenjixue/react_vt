@@ -6,6 +6,7 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+// import Home from "@/view/home/index"
 let withLazyComponet = (path: string, loadComponent = (<div>Loading...</div>)) => {
   // debugger;
   let baseUrl = "../"
@@ -17,6 +18,7 @@ let withLazyComponet = (path: string, loadComponent = (<div>Loading...</div>)) =
     </Suspense>
   )
 }
+
 let Cpo = withLazyComponet("@/components/component_one/index.tsx")
 let Cpt = withLazyComponet("@/components/component_two/index.tsx")
 let Home = withLazyComponet("@/view/home/index.tsx")
@@ -24,24 +26,27 @@ let Home = withLazyComponet("@/view/home/index.tsx")
 
 const router = createHashRouter([
   {
-    path:"/",
-    element:<Navigate to="/home/cpt"  />
+    path: "/",
+    element: <Navigate to="/cpt" />
   },
   {
-    path: "/home",
+    path: "/",
     element: <Home />,
     children: [
       {
-        path: "cpt",
+        path: "/cpt",
         element: (<Cpt />)
       },
       {
-        path: "cpo",
+        path: "/cpo",
         element: (<Cpo />)
       },
     ]
   },
-
+  {
+    path:"*",
+    element: <Navigate to="/cpt" />
+  }
 ]);
 
 export default router
