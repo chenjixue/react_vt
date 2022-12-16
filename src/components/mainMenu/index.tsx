@@ -9,9 +9,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 const MainMenu: React.FC = () => {
     let nav = useNavigate()
     let currentRouter = useLocation()
-    let selectMenuItem = ({ key }: { key: any }) => {
-        nav(key)
-    }
     let items = [
         {
             key: '/1',
@@ -83,13 +80,21 @@ const MainMenu: React.FC = () => {
         }
         return findKey(meuns)?.reverse()
     }
+    let selectMenuItem = ({ key }: { key: any }) => {
+        nav(key)
+    }
+    let onOpenChange = (openKeys: string | any[]) => {
+        setOpenKeys(findParantKey(items, openKeys[openKeys.length - 1])?.concat([openKeys[openKeys.length - 1]]))
+    }
+    let [openKeys, setOpenKeys] = useState(findParantKey(items, currentRouter.pathname) as any | undefined[])
     return (
         <Menu
             theme="dark"
             mode="inline"
-            defaultOpenKeys={findParantKey(items, currentRouter.pathname)}
             defaultSelectedKeys={[currentRouter.pathname]}
+            onOpenChange={onOpenChange}
             onSelect={selectMenuItem}
+            openKeys={openKeys}
             items={items}
         />
     )

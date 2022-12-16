@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react'
+import React, { ComponentType, lazy, Suspense } from 'react'
 import {
   createHashRouter,
   RouterProvider,
@@ -6,12 +6,14 @@ import {
   Outlet,
   Navigate,
 } from "react-router-dom";
+const components = import.meta.glob('@/**/**/*.tsx')
+console.log(components, "components----")
 // import Home from "@/view/home/index"
 let withLazyComponet = (path: string, loadComponent = (<div>Loading...</div>)) => {
   // debugger;
-  let baseUrl = "../"
+  let baseUrl = "/src/"
   path = path.replace("@/", baseUrl)
-  let ShowComponent = lazy(() => import( /* @vite-ignore */ path))
+  let ShowComponent = lazy(components[path] as () => Promise<{ default: ComponentType<any>; }>)
   return () => (
     <Suspense fallback={<div>Loading...</div>}>
       <ShowComponent />
@@ -22,6 +24,7 @@ let withLazyComponet = (path: string, loadComponent = (<div>Loading...</div>)) =
 let Cpo = withLazyComponet("@/components/component_one/index.tsx")
 let Cpt = withLazyComponet("@/components/component_two/index.tsx")
 let Home = withLazyComponet("@/view/home/index.tsx")
+let Login = withLazyComponet("@/view/login/index.tsx")
 
 
 const router = createHashRouter([
@@ -44,7 +47,11 @@ const router = createHashRouter([
     ]
   },
   {
-    path:"*",
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "*",
     element: <Navigate to="/cpt" />
   }
 ]);

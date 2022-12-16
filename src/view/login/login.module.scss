@@ -1,0 +1,42 @@
+.login_context {
+    width: 100%;
+    /* height: 800px; */
+    height: 100%;
+    min-height: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url(../../assets/img/main_bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+
+    .water_flow {
+        margin-top: 9%;
+        display: flex;
+        overflow: hidden;
+    }
+
+    .title {
+        text-align: center;
+        margin-top: -20px;
+        margin-bottom: 20px;
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .form_erea {
+        width: 410px;
+        margin: 0 auto;
+    }
+    .submit_button{
+        width: 100%;
+    }
+    :global(.ant-input) {
+        // 一些样式
+        background-color: rgba(255,255,255,0);
+    }
+    :global(.ant-input-affix-wrapper) {
+        // 一些样式
+        background-color: rgba(255,255,255,0);
+    }
+}
