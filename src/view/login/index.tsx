@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Checkbox, Form, Input, Col, Row } from 'antd';
 import Style from "./login.module.scss"
 import Line from "@/assets/img/line.png"
+import { getQcCode } from "@/request/api"
 import { useNavigate } from 'react-router-dom';
 const Login = (props) => {
     const line = useRef<HTMLTableDataCellElement>(null)
@@ -13,6 +14,7 @@ const Login = (props) => {
     useEffect(() => {
         lineDom = line.current
         lineDom2 = line2.current
+        getQcCode()
         let timerId = showAnimateLine()
         return () => {
             window.clearInterval(timerId)
@@ -89,7 +91,7 @@ const Login = (props) => {
                         <Col span={7}><div style={{ background: 'red' }}>验证码</div></Col>
                     </Row>
                 </Form.Item>
-                <Form.Item wrapperCol={{ offset: 7,}}>
+                <Form.Item wrapperCol={{ offset: 7, }}>
                     <Button type="primary" htmlType="submit" className={Style.submit_button}>
                         提交
                     </Button>

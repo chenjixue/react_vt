@@ -24,5 +24,4 @@ const arrSlice = createSlice({
         }
     }
 })
-export const { incremented, decremented } = arrSlice.actions
-export default arrSlice
+export const { reducer, actions } = arrSlice

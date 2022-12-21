@@ -1,13 +1,17 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import Style from "./index.module.scss"
-import store from "@/store"
-import { incremented, decremented } from "@/store/reducer"
+import store, { useAppDispatch } from "@/store"
+import { actions, asyncAction } from "@/store/Number"
 type stateType = ReturnType<typeof store.getState>;
+// type AppDispatch = typeof store.dispatch
 const Cpt = (props: any) => {
-    let dispatch = useDispatch()
+    // let dispatch = useDispatch()
+    let { decremented, incremented } = actions
+    let { fetchUsers } = asyncAction
+    const dispatch = useAppDispatch()
     let add = () => {
-        dispatch(incremented())
+        dispatch(fetchUsers("chenjixuedata"))
     }
     let dec = () => {
         dispatch(decremented())
