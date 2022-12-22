@@ -10,14 +10,8 @@ const arrSlice = createSlice({
     initialState,
     reducers: {
         incremented: state => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
             console.log("incremented")
-            //   state.value += 1
             return [...state, { id: 3, text: 'Build something fun!', completed: false, color: 'blue' }]
-
         },
         decremented: state => {
             return [...state.slice(0, state.length - 1)]

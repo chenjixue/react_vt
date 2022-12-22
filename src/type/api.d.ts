@@ -1,0 +1,3 @@
+interface QccodeObject {
+    name: string;
+}

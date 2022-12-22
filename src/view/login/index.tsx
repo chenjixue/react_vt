@@ -14,7 +14,9 @@ const Login = (props) => {
     useEffect(() => {
         lineDom = line.current
         lineDom2 = line2.current
-        getQcCode()
+         getQcCode().then(res =>{
+            console.log(res)
+         })
         let timerId = showAnimateLine()
         return () => {
             window.clearInterval(timerId)

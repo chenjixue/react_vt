@@ -1,2 +1,2 @@
 import request from "./index"
-export const getQcCode = () => request.get("/qccode")
+export const getQcCode = (): Promise<QccodeObject> => request.get("/qccode")

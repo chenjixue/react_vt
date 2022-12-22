@@ -3,6 +3,16 @@ import { useSelector, useDispatch } from 'react-redux'
 import Style from "./index.module.scss"
 import store, { useAppDispatch } from "@/store"
 import { actions, asyncAction } from "@/store/Number"
+import {
+    createHashRouter,
+    RouterProvider,
+    Route,
+    Outlet,
+    Navigate,
+    useNavigate,
+    redirect,
+    useLocation,
+  } from "react-router-dom";
 type stateType = ReturnType<typeof store.getState>;
 // type AppDispatch = typeof store.dispatch
 const Cpt = (props: any) => {
@@ -11,6 +21,7 @@ const Cpt = (props: any) => {
     let { fetchUsers } = asyncAction
     const dispatch = useAppDispatch()
     let add = () => {
+        // redirect("/login");
         dispatch(fetchUsers("chenjixuedata"))
     }
     let dec = () => {

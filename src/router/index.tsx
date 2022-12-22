@@ -1,14 +1,17 @@
-import React, { ComponentType, lazy, Suspense } from 'react'
+import React, { ComponentType, lazy, Suspense, useEffect } from 'react'
 import {
   createHashRouter,
   RouterProvider,
   Route,
   Outlet,
   Navigate,
+  useNavigate,
+  redirect,
+  useLocation,
 } from "react-router-dom";
-import Cpo from "@/components/component_one/index"
-import Cpt from "@/components/component_two/index"
-import Home from "@/view/home/index"
+import Cpo1 from "@/components/component_one/index"
+import Cpt1 from "@/components/component_two/index"
+import Home1 from "@/view/home/index"
 import Login from "@/view/login/index"
 
 // const components = import.meta.glob(['@/**/**/*.tsx','!@/router/index.tsx'])
@@ -29,6 +32,18 @@ import Login from "@/view/login/index"
 // let Home = withLazyComponet("@/view/home/index.tsx")
 // let Login = withLazyComponet("@/view/login/index.tsx")
 
+
+let AuthComponent = (ShowComponet: any) => {
+  let token = localStorage.getItem("token");
+  if (!token && location.hash.substring(1) != "/login") {
+    return () => <Navigate to="/login" />
+  }
+  return ShowComponet
+}
+let Cpo = AuthComponent(Cpo1)
+let Cpt = AuthComponent(Cpt1)
+let Home = AuthComponent(Home1)
+// let Login = AuthComponent(Login1)
 
 const router = createHashRouter([
   {
